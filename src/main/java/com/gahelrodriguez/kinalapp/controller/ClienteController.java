@@ -44,9 +44,9 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    //{dpi} es una variable de ruta (valor a buscar)
+    //{dpi} es una variable de ruta (valor a buscar), ahora de tipo Long
     @GetMapping("/{dpi}")
-    public ResponseEntity<Cliente> buscarPorDPI(@PathVariable String dpi) {
+    public ResponseEntity<Cliente> buscarPorDPI(@PathVariable Long dpi) {
         //@PathVariable: Toma el valor de la URL y lo asigna al parametro dpi
         return clienteService.busacarPorDPI(dpi)
                 //Si Optional tiene valor, devuelve 200 OK
@@ -74,7 +74,7 @@ public class ClienteController {
 
     //DELETE: elimina un cliente
     @DeleteMapping("/{dpi}")
-    public ResponseEntity<Void> eliminar(@PathVariable String dpi) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long dpi) {
         //ResponseEntity<Void>: No devuelve cuerpo en la respuesta
         try {
             if (!clienteService.exiteDPI(dpi))
@@ -89,9 +89,9 @@ public class ClienteController {
         }
     }
 
-    //PUT: actualizar cliente a traves de DPI
+    //PUT: actualizar cliente a traves de DPI (ahora Long)
     @PutMapping("/{dpi}")
-    public ResponseEntity<?> actualizar(@PathVariable String dpi, @RequestBody Cliente cliente) {
+    public ResponseEntity<?> actualizar(@PathVariable Long dpi, @RequestBody Cliente cliente) {
         try {
             if (!clienteService.exiteDPI(dpi))
                 //Verificar si existe antes de poder actualizar

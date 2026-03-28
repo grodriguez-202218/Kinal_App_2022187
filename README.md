@@ -1,7 +1,7 @@
-## KinalApp - API REST
-API REST desarrollada con Spring Boot para la gestión de clientes, productos y usuarios.
+## KinalApp_2022187
+API REST desarrollada con Spring Boot para la gestión de clientes, usuarios, productos, ventas y detalle de ventas.
 ## Tecnologías
-* **java 17**
+* **java 21**
 * **Spring Boot 4.0.2**
 * **Maven** (Gestor de dependencias)
 * **MySQL** (Sistema Gestor de Base de Datos)
@@ -26,25 +26,35 @@ src/
 │
 ├── controller/
 │   ├── ClienteController.java
+│   ├── DetalleVentaController.java
 │   ├── ProductoController.java
-│   └── UsuarioController.java
+│   ├── UsuarioController.java
+│   └── VentaController.java
 │
 ├── entity/
 │   ├── Cliente.java
+│   ├── DetalleVenta.java
 │   ├── Producto.java
-│   └── Usuario.java
+│   ├── Usuario.java
+│   └── Venta.java
 │
 ├── repository/
 │   ├── ClienteRepository.java
+│   ├── DetalleVentaRepository.java
 │   ├── ProductoRepository.java
-│   └── UsuarioRepository.java
+│   ├── UsuarioRepository.java
+│   └── VentaRepository.java
 │
 ├── service/
 │   ├── IClienteService.java
 │   ├── ClienteService.java
+│   ├── IDetalleVentaService.java
+│   ├── DetalleVentaService.java
 │   ├── IProductoService.java
 │   ├── ProductoService.java
 │   ├── IUsuarioService.java
-│   └── UsuarioService.java
+│   ├── UsuarioService.java
+│   ├── IVentaService.java
+│   └── VentaService.java
 │
 └── KinalAppApplication.java

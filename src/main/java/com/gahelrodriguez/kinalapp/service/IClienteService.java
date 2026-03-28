@@ -25,18 +25,19 @@ public interface IClienteService {
 
     //Optional: Contenedor que puede o no tener un valor
     //evita el error de NullPointerException
-    Optional<Cliente> busacarPorDPI(String dpi);
+    // dpi ahora es Long en lugar de String
+    Optional<Cliente> busacarPorDPI(Long dpi);
 
     //Metodo que actualiza un Cliente
-    //Parametros: dpi del Cliente a actualizar
+    //Parametros: dpi del Cliente a actualizar (ahora Long)
     //            cliente: Objeto con los datos nuevos
     //Retorna un objeto de tipo Cliente ya actualizado
-    Cliente actualizar(String dpi, Cliente cliente);
+    Cliente actualizar(Long dpi, Cliente cliente);
 
     //void: no retorna ningun dato
-    //Elimina un Cliente por su DPI
-    void eliminar(String dpi);
+    //Elimina un Cliente por su DPI (ahora Long)
+    void eliminar(Long dpi);
 
     //boolean: Retorna true si existe, false si no existe
-    boolean exiteDPI(String dpi);
+    boolean exiteDPI(Long dpi);
 }
