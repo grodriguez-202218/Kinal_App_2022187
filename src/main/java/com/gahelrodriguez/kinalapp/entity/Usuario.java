@@ -1,13 +1,13 @@
 package com.gahelrodriguez.kinalapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Usuario {
-
     @Id
-    //@GeneratedValue: La BD genera el valor automaticamente (auto-incremental)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_usuario")
     private Long codigoUsuario;
@@ -20,12 +20,14 @@ public class Usuario {
     @Column
     private String rol;
     @Column
-    private int estado;
+    private Long estado;
 
+    /*Constructor vacio: Requerido por JPA.*/
     public Usuario() {
     }
 
-    public Usuario(String username, String password, String email, String rol, int estado) {
+    public Usuario(String username, String password, String email,
+                   String rol, Long estado) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -73,11 +75,11 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public int getEstado() {
+    public Long getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Long estado) {
         this.estado = estado;
     }
 }

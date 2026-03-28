@@ -19,8 +19,8 @@ public interface IVentaService {
     List<Venta> listarActivos();
     List<Venta> listarInactivos();
 
-    //Metodo que devuelve todas las ventas de un cliente por su DPI
-    List<Venta> listarPorCliente(String dpiCliente);
+    //Metodo que devuelve todas las ventas de un cliente por su DPI (ahora Long)
+    List<Venta> listarPorCliente(Long dpiCliente);
 
     //Metodo que devuelve todas las ventas registradas por un usuario
     List<Venta> listarPorUsuario(Long codigoUsuario);
@@ -35,7 +35,7 @@ public interface IVentaService {
 
     //Metodo que actualiza una Venta
     //Parametros: codigoVenta de la Venta a actualizar
-    //            venta: Objeto con los datos nuevos
+    //venta: Objeto con los datos nuevos
     //Retorna un objeto de tipo Venta ya actualizado
     Venta actualizar(Long codigoVenta, Venta venta);
 

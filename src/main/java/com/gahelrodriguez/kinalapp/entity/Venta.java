@@ -1,37 +1,27 @@
 package com.gahelrodriguez.kinalapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "ventas")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Venta {
-
     @Id
-    //@GeneratedValue: La BD genera el valor automaticamente (auto-incremental)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_venta")
     private Long codigoVenta;
     @Column
-    //LocalDate: tipo de dato para fechas sin hora (yyyy-MM-dd)
     private LocalDate fechaVenta;
     @Column
-    //BigDecimal: tipo de dato para valores monetarios, evita errores de redondeo
     private BigDecimal total;
     @Column
-    private int estado;
-
-    /*@ManyToOne: Muchas ventas pueden pertenecer a un Cliente
-     *@JoinColumn: Define la columna de la llave foranea en la tabla ventas
-     */
+    private Long estado;
     @ManyToOne
     @JoinColumn(name = "Clientes_dpi_cliente")
     private Cliente cliente;
-
-    /*@ManyToOne: Muchas ventas pueden pertenecer a un Usuario
-     *@JoinColumn: Define la columna de la llave foranea en la tabla ventas
-     */
     @ManyToOne
     @JoinColumn(name = "Usuarios_codigo_usuario")
     private Usuario usuario;
@@ -39,7 +29,8 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(LocalDate fechaVenta, BigDecimal total, int estado, Cliente cliente, Usuario usuario) {
+    public Venta(LocalDate fechaVenta, BigDecimal total, Long estado,
+                 Cliente cliente, Usuario usuario) {
         this.fechaVenta = fechaVenta;
         this.total = total;
         this.estado = estado;
@@ -71,11 +62,11 @@ public class Venta {
         this.total = total;
     }
 
-    public int getEstado() {
+    public Long getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Long estado) {
         this.estado = estado;
     }
 

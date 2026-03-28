@@ -1,5 +1,7 @@
 package com.gahelrodriguez.kinalapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,10 +9,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Cliente {
+    @JsonProperty("DPICliente")
     @Id
     @Column(name = "dpi_cliente")
-    private String DPICliente;
+    private Long DPICliente;
     @Column
     private String nombreCliente;
     @Column
@@ -18,12 +22,14 @@ public class Cliente {
     @Column
     private String direccion;
     @Column
-    private int estado;
+    private Long estado;
 
+    /*Constructor vacio: Requerido por JPA.*/
     public Cliente() {
     }
 
-    public Cliente(String DPICliente, String nombreCliente, String apellidoCliente, String direccion, int estado) {
+    public Cliente(Long DPICliente, String nombreCliente, String apellidoCliente,
+                   String direccion, Long estado) {
         this.DPICliente = DPICliente;
         this.nombreCliente = nombreCliente;
         this.apellidoCliente = apellidoCliente;
@@ -31,11 +37,11 @@ public class Cliente {
         this.estado = estado;
     }
 
-    public String getDPICliente() {
+    public Long getDPICliente() {
         return DPICliente;
     }
 
-    public void setDPICliente(String DPICliente) {
+    public void setDPICliente(Long DPICliente) {
         this.DPICliente = DPICliente;
     }
 
@@ -63,11 +69,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public int getEstado() {
+    public Long getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Long estado) {
         this.estado = estado;
     }
 }

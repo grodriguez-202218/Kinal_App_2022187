@@ -44,9 +44,9 @@ public class VentaController {
         return ResponseEntity.ok(ventas);
     }
 
-    //{dpi} es una variable de ruta (DPI del cliente a consultar)
+    //{dpi} es una variable de ruta (DPI del cliente a consultar), ahora Long
     @GetMapping("/cliente/{dpi}")
-    public ResponseEntity<List<Venta>> listarPorCliente(@PathVariable String dpi) {
+    public ResponseEntity<List<Venta>> listarPorCliente(@PathVariable Long dpi) {
         //@PathVariable: Toma el valor de la URL y lo asigna al parametro dpi
         List<Venta> ventas = ventaService.listarPorCliente(dpi);
         return ResponseEntity.ok(ventas);
