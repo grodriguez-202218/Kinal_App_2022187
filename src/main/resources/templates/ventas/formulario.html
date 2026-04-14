@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title th:text="${titulo}">Formulario Venta</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0"><i class="bi bi-cart me-2"></i><span th:text="${titulo}">Nueva Venta</span></h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="${accion == 'guardar'} ? @{/ventas/vista/guardar} : @{/ventas/vista/actualizar/{codigo}(codigo=${venta.codigoVenta})}"
+                                  th:object="${venta}"
+                                  method="post">
+
+                                <div class="mb-3">
+                                    <label for="fechaVenta" class="form-label">Fecha de Venta</label>
+                                    <input type="date"
+                                           class="form-control"
+                                           id="fechaVenta"
+                                           th:field="*{fechaVenta}"
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="cliente" class="form-label">Cliente</label>
+                                    <select class="form-select" id="cliente" th:field="*{cliente.DPICliente}" required>
+                                        <option value="">Seleccione un cliente</option>
+                                        <option th:each="cli : ${clientes}"
+                                                th:value="${cli.DPICliente}"
+                                                th:text="${cli.nombreCliente} + ' ' + ${cli.apellidoCliente} + ' (DPI: ' + ${cli.DPICliente} + ')'">
+                                            Cliente
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="usuario" class="form-label">Usuario</label>
+                                    <select class="form-select" id="usuario" th:field="*{usuario.codigoUsuario}" required>
+                                        <option value="">Seleccione un usuario</option>
+                                        <option th:each="usr : ${usuarios}"
+                                                th:value="${usr.codigoUsuario}"
+                                                th:text="${usr.username} + ' (' + ${usr.rol} + ')'">
+                                            Usuario
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="total" class="form-label">Total (Q)</label>
+                                    <input type="number"
+                                           step="0.01"
+                                           class="form-control"
+                                           id="total"
+                                           th:field="*{total}"
+                                           required
+                                           placeholder="0.00">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="estado" class="form-label">Estado</label>
+                                    <select class="form-select" id="estado" th:field="*{estado}">
+                                        <option value="1">Activa</option>
+                                        <option value="0">Anulada</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-check-circle me-2"></i>
+                                        <span th:text="${accion == 'guardar'} ? 'Guardar' : 'Actualizar'">Guardar</span>
+                                    </button>
+                                    <a th:href="@{/ventas/vista}" class="btn btn-secondary">
+                                        <i class="bi bi-x-circle me-2"></i>Cancelar
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

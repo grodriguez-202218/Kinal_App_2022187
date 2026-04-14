@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title th:text="${titulo}">Formulario Usuario</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0"><i class="bi bi-person me-2"></i><span th:text="${titulo}">Nuevo Usuario</span></h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="${accion == 'guardar'} ? @{/usuarios/vista/guardar} : @{/usuarios/vista/actualizar/{codigo}(codigo=${usuario.codigoUsuario})}"
+                                  th:object="${usuario}"
+                                  method="post">
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="username"
+                                           th:field="*{username}"
+                                           required
+                                           placeholder="Ingrese username">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email"
+                                           class="form-control"
+                                           id="email"
+                                           th:field="*{email}"
+                                           required
+                                           placeholder="usuario@email.com">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password"
+                                           class="form-control"
+                                           id="password"
+                                           th:field="*{password}"
+                                           required
+                                           placeholder="••••••••">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="rol" class="form-label">Rol</label>
+                                        <select class="form-select" id="rol" th:field="*{rol}">
+                                            <option value="ADMIN">Administrador</option>
+                                            <option value="USER">Usuario</option>
+                                            <option value="VENDEDOR">Vendedor</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="estado" class="form-label">Estado</label>
+                                        <select class="form-select" id="estado" th:field="*{estado}">
+                                            <option value="1">Activo</option>
+                                            <option value="0">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-check-circle me-2"></i>
+                                        <span th:text="${accion == 'guardar'} ? 'Guardar' : 'Actualizar'">Guardar</span>
+                                    </button>
+                                    <a th:href="@{/usuarios/vista}" class="btn btn-secondary">
+                                        <i class="bi bi-x-circle me-2"></i>Cancelar
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
