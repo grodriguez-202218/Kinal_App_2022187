@@ -18,7 +18,7 @@ Antes de ejecutar la aplicación, debe tener instalado:
 3. Compilar el proyecto
 4. Ejecutar "KinalAppApplication"
 5. Descargar la carpeta de postman para poder acceder a los endpoints especificos.
-6. Usar la ruta de (http://localhost:8088/) para poder acceder a la pagina principal del proyecto.
+6. Usar la ruta de (http://localhost:8088/) para poder acceder o entrar a la pagina principal del proyecto.
 
 ## Estructura del proyecto
 src/
